@@ -2,6 +2,13 @@ from board import Board, SQ_SIZE
 import pygame
 from gameState import GameState, Move
 
+
+def readable_board(board):
+
+    for row in board:
+        print(row)
+
+
 WIDTH = 300
 HEIGHT = 300
 SIZE = (WIDTH, HEIGHT)
@@ -23,7 +30,7 @@ b = Board(gs.board)
 b.load_images()
 
 userClicks = []
-b.draw_game_state(screen)
+
 
 while running:
     
@@ -49,21 +56,15 @@ while running:
             print(userClicks)
 
             if len(userClicks) == 2:
-                m = Move(userClicks, gs.board)
+                m = Move(userClicks[0],userClicks[1], gs.board)
                 m.move_pawn()
+                readable_board(gs.board)
+                userClicks = [] # Refresh the users  click after making a move
                 
-
-
-    #b.draw_board(screen)
-    #b.draw_chess_pieces(screen)
     
-
-    # get mouse click
-    # check mouse location
-    # divide it to get the rows and columns of the position of cursor
-    # check selected square
-    # create a list that keep tracks of users clicks
-
+    b.draw_game_state(screen)
+    
+    pygame.display.flip()
     # Update the display S
     pygame.display.update()
 

@@ -1,3 +1,5 @@
+import pygame
+
 class GameState:
 
     def __init__(self):
@@ -12,19 +14,20 @@ class GameState:
         ["wP","wP","wP","wP","wP","wP","wP","wP"],
         ["wR","wKN","wB","wQ","wK","wB","wKN","wR"]]
 
+
 class Move:
 
-    def __init__(self, userMove, board ):
-        self.userMove = userMove
+    # startMove and endMove takes an element of the userClicks where startMove = userClicks[0],  endMove = userClicks[1]
+    def __init__(self, startMove,endMove, board ):
+        self.startColPosition, self.StartRowPosition = startMove
+        self.endColPosition, self.endRowPosition = endMove
         self.board = board
 
     def move_pawn(self):
 
-        print("I am working")
-        column1, row1 = self.userMove[0]
-        column2, row2 = self.userMove[1]
-        
-        if self.board[row1][column1] == "wP":
-            self.board[row2][column2] = "--"
-            self.board[row2][column2] = "wP"
-    
+        if self.board[self.StartRowPosition][self.startColPosition] == "wP":
+            self.board[self.StartRowPosition][self.startColPosition] = "--"
+            self.board[self.endRowPosition][self.endColPosition] = "wP"
+            
+        return self.board
+
