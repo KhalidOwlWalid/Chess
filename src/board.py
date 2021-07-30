@@ -1,5 +1,6 @@
 import pygame
-from gameState import GameState
+from src import gameState
+
 # CONSTANTS
 ROWS = 8
 COLUMNS = 8
@@ -11,7 +12,7 @@ SQ_SIZE = WIDTH // ROWS
 WHITE = (255,255,255)
 BLACK = (0,0,0)
 
-gs = GameState()
+gs = gameState.GameState()
 
 class Board:
 
