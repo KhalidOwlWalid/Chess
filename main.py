@@ -1,14 +1,23 @@
-from board import Board, SQ_SIZE
 import pygame
-from gameState import GameState, Move
+from src import gameState, board
 
 
 def readable_board(board):
-
     for row in board:
         print(row)
 
+# CONSTANTS
+ROWS = 8
+COLUMNS = 8
+HEIGHT = 300
+WIDTH = 300
+SQ_SIZE = WIDTH // ROWS
 
+# debug constant
+debug = 0
+debug_time = 30
+
+# Screen constants
 WIDTH = 300
 HEIGHT = 300
 SIZE = (WIDTH, HEIGHT)
@@ -17,6 +26,13 @@ SIZE = (WIDTH, HEIGHT)
 BLACK = (0,0,0)
 WHITE = (255,255,255)
 
+# Game State 
+num_of_turns = 0
+FPS = 30
+fpsclock = pygame.time.Clock()
+colorTurn = 0
+
+#--------------------------------------------------------Game starts here--------------------------------------------------------#
 pygame.init()
 
 # Set the size of the screen to be 800,800
@@ -24,8 +40,8 @@ screen = pygame.display.set_mode(SIZE)
 
 running = True
 
-gs = GameState()
-b = Board(gs.board)
+gs = gameState.GameState()
+b = board.Board(gs.board)
 
 b.load_images()
 
@@ -36,6 +52,9 @@ while running:
     
     
     for event in pygame.event.get():
+
+        #if debug % debug_time == 0:
+            #print("Under event : ", white_move)
 
         if event.type == pygame.QUIT:
             running = False
@@ -53,20 +72,32 @@ while running:
             squareSelected = location
 
             userClicks.append(squareSelected)
-            print(userClicks)
+
+            #pieceColumn, pieceRow = userClicks[0]
+            #print(gs.board[pieceRow][pieceColumn])
 
             if len(userClicks) == 2:
-                m = Move(userClicks[0],userClicks[1], gs.board)
-                m.move_pawn()
+
+                if colorTurn % 2 == 0:
+                    m = gameState.Move(userClicks[0],userClicks[1], gs.board, True)
+                    colorTurn += 1
+                else:
+                    m = gameState.Move(userClicks[0],userClicks[1], gs.board, False)
+                    colorTurn += 1
+
                 readable_board(gs.board)
+
                 userClicks = [] # Refresh the users  click after making a move
                 
-    
+                
     b.draw_game_state(screen)
     
     pygame.display.flip()
-    # Update the display S
+    # Update the display 
     pygame.display.update()
+    fpsclock.tick(FPS)
+    
+    debug += 1
 
 pygame.quit()
 
