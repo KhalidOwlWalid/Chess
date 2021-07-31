@@ -35,6 +35,7 @@ class Move:
 
         # Check chess piece type
         self.check_piece()
+        return self.check_piece()
 
     def check_piece(self):
 
