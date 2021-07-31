@@ -31,6 +31,7 @@ num_of_turns = 0
 FPS = 30
 fpsclock = pygame.time.Clock()
 colorTurn = 0
+white_turn = True
 
 #--------------------------------------------------------Game starts here--------------------------------------------------------#
 pygame.init()
@@ -78,13 +79,8 @@ while running:
 
             if len(userClicks) == 2:
 
-                if colorTurn % 2 == 0:
-                    m = gameState.Move(userClicks[0],userClicks[1], gs.board, True)
-                    colorTurn += 1
-                else:
-                    m = gameState.Move(userClicks[0],userClicks[1], gs.board, False)
-                    colorTurn += 1
-
+                white_turn = gameState.Move(userClicks[0], userClicks[1], gs.board, white_turn)
+                print(white_turn)
                 readable_board(gs.board)
 
                 userClicks = [] # Refresh the users  click after making a move

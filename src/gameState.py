@@ -98,24 +98,20 @@ class Move:
                     self.take_or_swap()
                     print("Black Turn")
 
-                    self.white_move = False
-
-                    return self.white_move
+                    return False
 
                 else:
                     self.take_or_swap()
                     print("Black Turn")
 
-                    self.white_move = False
-
-                    return self.white_move
+                    return False
 
             # If the player attempt to jump more than 2 boxes or move diagonally, it is not allowed hence telling them it is an invalid move
             else:
                 print("Invalid move, please try again")
                 print("White Turn")
 
-                return self.white_move
+                return True
 
 
         if self.white_move == False and pawnPosition == "bP":
@@ -126,25 +122,22 @@ class Move:
                     self.take_or_swap()
                     print("White turn")
 
-                    self.white_move = True
-
-                    return self.white_move
+                    return True
 
                 else:
                     self.take_or_swap()
                     print("White turn")
-                    
-                    self.white_move = True
 
-                    return self.white_move
+                    return True
 
             
             else:
                 print("Invalid move, please try again")
 
-                return self.white_move
+                return False
 
-    def move_rook(self):
+    def move_rook(self):  
+
         print(self.piece)
 
     def move_knight(self):
