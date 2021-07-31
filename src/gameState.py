@@ -39,7 +39,7 @@ class Move:
     def check_piece(self):
 
         if self.piece == "wP" or self.piece == "bP":
-            self.move_pawn()
+            return self.move_pawn()
   
         elif self.piece == "wR" or self.piece == "bR":
             print("Rook here")
