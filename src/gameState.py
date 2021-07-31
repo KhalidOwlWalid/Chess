@@ -33,10 +33,6 @@ class Move:
         self.piece = board[self.startRowPosition][self.startColPosition]
         self.userMove = board[self.endRowPosition][self.endColPosition]
 
-        # Check chess piece type
-        self.check_piece()
-        return self.check_piece()
-
     def check_piece(self):
 
         if self.piece == "wP" or self.piece == "bP":
@@ -136,6 +132,9 @@ class Move:
                 print("Invalid move, please try again")
 
                 return False
+
+        else: 
+            return self.white_move
 
     def move_rook(self):  
 
