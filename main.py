@@ -1,5 +1,7 @@
 import pygame
 from src import gameState, board
+import ctypes
+
 
 
 def readable_board(board):
@@ -79,7 +81,8 @@ while running:
 
             if len(userClicks) == 2:
 
-                white_turn = gameState.Move(userClicks[0], userClicks[1], gs.board, white_turn)
+                gameStateClass = gameState.Move(userClicks[0], userClicks[1], gs.board, white_turn)
+                white_turn = gameStateClass.check_piece()
                 print(white_turn)
                 readable_board(gs.board)
 
